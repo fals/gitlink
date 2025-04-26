@@ -1,9 +1,8 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
-import * as simplegit from 'simple-git';
+import { simpleGit, SimpleGit } from 'simple-git';
 
 export function activate(context: vscode.ExtensionContext) {
-	
 	let disposable = vscode.commands.registerCommand('gitlink.generateLink', async () => {
 		try {
 			// Get the active text editor
@@ -26,7 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
 				return;
 			}
 			
-			const git = simplegit(workspaceFolder.uri.fsPath);
+			const git: SimpleGit = simpleGit(workspaceFolder.uri.fsPath);
 			
 			// Check if the file is under git control
 			try {
