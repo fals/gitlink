@@ -4,8 +4,14 @@
   "description": "Generate direct links to GitHub or GitLab at the current cursor position",
   "version": "0.1.0",
   "publisher": "fals",
+  "icon": "images/icon.jpg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fals/gitlink"
+  },
+  "license": "MIT",
   "engines": {
-    "vscode": "^1.60.0"
+    "vscode": "^1.73.0"
   },
   "categories": [
     "Other"
