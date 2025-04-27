@@ -18,7 +18,7 @@ GitLink is a VS Code extension that generates direct links to GitHub or GitLab r
 3. Type "GitLink: Generate Link" and select the command
 4. The link is copied to your clipboard and ready to share
 
-![alt text](images/Animation.gif)
+![alt text](images/demo.gif)
 
 Perfect for code reviews, documentation, and sharing specific code snippets with your team!
 
