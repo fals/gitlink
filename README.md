@@ -1,5 +1,5 @@
 # GitLink
-<img src="images/icon.jpg" width="200" height="200"/>
+<img src="images/icon.jpg" width="128" height="128"/>
 
 GitLink is a VS Code extension that generates direct links to GitHub or GitLab repositories at the current cursor position. With a single command, you can create a shareable URL that opens directly to the specific line of code in your browser.
 
