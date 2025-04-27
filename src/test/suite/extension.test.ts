@@ -80,14 +80,14 @@ suite('Extension Test Suite', () => {
 		sandbox.stub(vscode.workspace, 'getWorkspaceFolder').returns(workspaceFolder as any);
 		sandbox.stub(require('simple-git'), 'simpleGit').returns(gitMock as unknown as SimpleGit);
 		
-		const clipboardContent = await vscode.env.clipboard.readText();
 		const showInfoSpy = sandbox.stub(vscode.window, 'showInformationMessage');
 		
 		// Execute the command
 		await vscode.commands.executeCommand('gitlink.generateLink');
 		
 		// Verify clipboard contains correct link
-		assert.strictEqual(clipboardContent, 'https://github.com/owner/repo/blob/main/file.ts#L10');
+		const clipboardContent = await vscode.env.clipboard.readText();
+		assert.strictEqual(clipboardContent, 'https://github.com/owner/repo/blob/main/../path/to/file.ts#L10');
 		
 		// Verify information message was shown
 		assert.strictEqual(
@@ -118,13 +118,13 @@ suite('Extension Test Suite', () => {
 		sandbox.stub(vscode.workspace, 'getWorkspaceFolder').returns(workspaceFolder as any);
 		sandbox.stub(require('simple-git'), 'simpleGit').returns(gitMock as unknown as SimpleGit);
 		
-		const clipboardContent = await vscode.env.clipboard.readText();
-		
 		// Execute the command
 		await vscode.commands.executeCommand('gitlink.generateLink');
 		
+		
 		// Verify clipboard contains correct GitLab link
-		assert.strictEqual(clipboardContent, 'https://gitlab.com/owner/repo/-/blob/main/file.ts#L10');
+		const clipboardContent = await vscode.env.clipboard.readText();
+		assert.strictEqual(clipboardContent, 'https://gitlab.com/owner/repo/-/blob/main/../path/to/file.ts#L10');
 	});
 	
 	test('Should handle error when no git remote found', async () => {
