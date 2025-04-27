@@ -15,4 +15,4 @@ out/test/**
 package-lock.json
 *.vsix
 node_modules/**
-image/demo.gif
+images/demo.gif
