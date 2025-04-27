@@ -19,7 +19,7 @@ suite('Extension Test Suite', () => {
 	});
 	
 	test('Extension should be present', () => {
-		assert.ok(vscode.extensions.getExtension('your-publisher.gitlink'));
+		assert.ok(vscode.extensions.getExtension('fals.gitlink'));
 	});
 	
 	test('Should register command', () => {
@@ -80,17 +80,14 @@ suite('Extension Test Suite', () => {
 		sandbox.stub(vscode.workspace, 'getWorkspaceFolder').returns(workspaceFolder as any);
 		sandbox.stub(require('simple-git'), 'simpleGit').returns(gitMock as unknown as SimpleGit);
 		
-		const clipboardSpy = sandbox.stub(vscode.env.clipboard, 'writeText').resolves();
+		const clipboardContent = await vscode.env.clipboard.readText();
 		const showInfoSpy = sandbox.stub(vscode.window, 'showInformationMessage');
 		
 		// Execute the command
 		await vscode.commands.executeCommand('gitlink.generateLink');
 		
 		// Verify clipboard contains correct link
-		assert.strictEqual(
-			clipboardSpy.calledWith('https://github.com/owner/repo/blob/main/file.ts#L10'),
-			true
-		);
+		assert.strictEqual(clipboardContent, 'https://github.com/owner/repo/blob/main/file.ts#L10');
 		
 		// Verify information message was shown
 		assert.strictEqual(
@@ -121,16 +118,13 @@ suite('Extension Test Suite', () => {
 		sandbox.stub(vscode.workspace, 'getWorkspaceFolder').returns(workspaceFolder as any);
 		sandbox.stub(require('simple-git'), 'simpleGit').returns(gitMock as unknown as SimpleGit);
 		
-		const clipboardSpy = sandbox.stub(vscode.env.clipboard, 'writeText').resolves();
+		const clipboardContent = await vscode.env.clipboard.readText();
 		
 		// Execute the command
 		await vscode.commands.executeCommand('gitlink.generateLink');
 		
 		// Verify clipboard contains correct GitLab link
-		assert.strictEqual(
-			clipboardSpy.calledWith('https://gitlab.com/owner/repo/-/blob/main/file.ts#L10'),
-			true
-		);
+		assert.strictEqual(clipboardContent, 'https://gitlab.com/owner/repo/-/blob/main/file.ts#L10');
 	});
 	
 	test('Should handle error when no git remote found', async () => {

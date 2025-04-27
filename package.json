@@ -3,7 +3,7 @@
   "displayName": "GitLink",
   "description": "Generate direct links to GitHub or GitLab at the current cursor position",
   "version": "0.1.0",
-  "publisher": "your-publisher-name",
+  "publisher": "fals",
   "engines": {
     "vscode": "^1.60.0"
   },
@@ -21,38 +21,27 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run package",
-    "compile": "webpack",
-    "watch": "webpack --watch",
-    "package": "webpack --mode production --devtool hidden-source-map",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "npm run compile-tests && npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
-  },
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile",
+		"test": "vscode-test"
+	},
   "devDependencies": {
-    "@types/glob": "^8.1.0",
-    "@types/jest": "^29.5.14",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "^20.11.24",
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/mocha": "^10.0.1",
+		"@types/node": "^20",
+		"@types/vscode": "^1.73.0",
     "@types/sinon": "^17.0.3",
-    "@types/vscode": "^1.87.0",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "@typescript-eslint/parser": "^7.0.2",
-    "@vscode/test-electron": "^2.5.2",
-    "eslint": "^8.56.0",
-    "glob": "^11.0.2",
-    "jest": "^29.7.0",
-    "mocha": "^11.1.0",
-    "sinon": "^17.0.1",
-    "ts-jest": "^29.3.2",
-    "ts-loader": "^9.5.1",
-    "typescript": "^5.8.3",
-    "vscode-test": "^1.6.1",
-    "webpack": "^5.90.3",
-    "webpack-cli": "^5.1.4"
-  },
+		"@vscode/test-cli": "^0.0.8",
+		"@vscode/test-electron": "^2.3.9",
+		"eslint": "^9.13.0",
+		"mocha": "^10.2.0",
+		"typescript": "^5.8.2",
+		"typescript-eslint": "^8.26.0",
+    "sinon": "^17.0.1"
+	},
   "dependencies": {
     "simple-git": "^3.22.0"
   }
